@@ -1,0 +1,38 @@
+{
+  "name": "s3-video-player",
+  "version": "1.0.0",
+  "description": "Media player for video hosted on AWS S3 service",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshua-williams/s3-video-player.git"
+  },
+  "keywords": [
+    "media-player",
+    "video",
+    "player",
+    "playlist"
+  ],
+  "author": "Joshua D. Williams",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joshua-williams/s3-video-player/issues"
+  },
+  "homepage": "https://github.com/joshua-williams/s3-video-player#readme",
+  "dependencies": {
+    "aws-sdk": "^2.743.0",
+    "next": "^9.5.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2"
+  }
+}
