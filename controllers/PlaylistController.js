@@ -7,15 +7,14 @@ class PlaylistController {
         this.service = new PlaylistService()
     }
 
-    list () {
-        const items = this.service.getPlaylist(this.playlistConfig)
-            .then((response) => {
-                console.log(response)
-            })
+    async list () {
+        let playlist;
+        await this.service.getPlaylist(this.playlistConfig)
+            .then( response => playlist = response)
             .catch((err) => {
-                console.log(err)
+                throw new Error(err.message)
             });
-        return items;
+        return playlist
     }
 }
 

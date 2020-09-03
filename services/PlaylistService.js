@@ -1,7 +1,7 @@
 const AWS = require('aws-sdk');
 const s3 = new AWS.S3({apiVersion: '2006-03-01'})
 
-class PlayListService {
+class PlaylistService {
     
     getPlaylist(playlistConfig) {
         const params = {
@@ -13,22 +13,33 @@ class PlayListService {
                 if (err) {
                     reject(err)
                 } else {
-                    resolve(this.s3ContentAdapter(data.Contents))
+                    let playlist = this.s3ContentAdapter(data.Contents);
+                    resolve(playlist)
                 }
             })
         })
     }
 
     s3ContentAdapter(contents) {
-        const chapters = {};
+        const chapters = [];
         for(let a = 0, item; item = contents[a]; a++) {
             let parts = item.Key.split('/');
             let title = parts[parts.length - 1]
-            let chapterTitle = parts[parts.length - 2]
-            if (!chapters.hasOwnProperty(chapterTitle)) {
-                chapters[chapterTitle] = []
+            let chapterTitle = parts[parts.length - 2];
+            let chapter;
+            for ( let key in chapters) {
+                if (chapters[key]['title'] == chapterTitle) {
+                    chapter = chapters[key];
+                }
             }
-            chapters[chapterTitle].push({
+            if (!chapter) {
+                chapter = {
+                    title: chapterTitle,
+                    items: []
+                }
+                chapters.push(chapter);
+            }
+            chapter.items.push({
                 title: title.replace(/\.\w+$/, ''),
                 modified: item.LastModified,
                 size: Math.round(item.Size * .001)
@@ -43,4 +54,4 @@ class PlayListService {
     }
 }
 
-module.exports = PlayListService
+module.exports = PlaylistService

@@ -1,4 +1,5 @@
 import React from 'react';
+import Playlist from './Playlist';
 
 class MediaPlayer extends React.Component {
     constructor(props) {
@@ -11,11 +12,7 @@ class MediaPlayer extends React.Component {
                 <h1>Introduction to React.js</h1>
             </div>
             <aside>
-                <nav>
-                    <ul>
-                        <h5>Getting Started with React</h5>
-                    </ul>
-                </nav>
+                <Playlist chapters={this.props.chapters}/>
             </aside>
         </section>
     }

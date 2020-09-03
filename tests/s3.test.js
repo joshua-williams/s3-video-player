@@ -1,7 +1,7 @@
 const PlaylistController = require('../controllers/PlayListController');
 
-test('should list playlist items', () => {
+test('should list playlist items', async () => {
     const playlistController = new PlaylistController('Using React Hooks')
-    const playlist = playlistController.list()
-    console.log(playlist)
+    const playlist = await playlistController.list();
+    console.log(playlist);
 });
