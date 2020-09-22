@@ -12,7 +12,9 @@ class MediaPlayer extends React.Component {
                 <h1>Introduction to React.js</h1>
             </div>
             <aside>
-                <Playlist chapters={this.props.chapters}/>
+                <div className="menu">
+                    <Playlist chapters={this.props.playlist}/>
+                </div>
             </aside>
         </section>
     }

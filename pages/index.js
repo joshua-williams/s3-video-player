@@ -2,9 +2,8 @@ import MediaPlayer from '../components/MediaPlayer'
 import PlaylistController from '../controllers/PlaylistController'
 
 export async function getStaticProps () {
-    const playlistController = new PlaylistController('Using React Hooks');
-    const playlist = await playlistController.list();
-    let pl = playlist;
+    const playlistController = new PlaylistController();
+    const playlist = await playlistController.list('Using React Hooks');
     return {
         props: {
             playlist
@@ -12,7 +11,7 @@ export async function getStaticProps () {
     }
 }
 
-const App = () => {
+const App = (props) => {
     return <>
     <html>
         <head>
@@ -21,7 +20,7 @@ const App = () => {
             <meta name="viewport" content="initial-scale=1,shrink-to-fit=no"/>
         </head>
         <body>
-            <MediaPlayer/>
+            <MediaPlayer playlist={props.playlist}/>
         </body>
     </html>
     </>

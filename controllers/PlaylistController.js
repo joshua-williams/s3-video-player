@@ -3,16 +3,16 @@ const PlaylistService = require('../services/PlaylistService');
 
 class PlaylistController {
     constructor(playlist, author) {
-        this.playlistConfig = Config.getPlaylistConfig(playlist, author)
         this.service = new PlaylistService()
     }
 
-    async list () {
+    async list (playlistName, authorName) {
+        let playlistConfig = Config.getPlaylistConfig(playlistName, authorName);
         let playlist;
-        await this.service.getPlaylist(this.playlistConfig)
+        await this.service.getPlaylist(playlistConfig)
             .then( response => playlist = response)
             .catch((err) => {
-                throw new Error(err.message)
+                throw new Error(err)
             });
         return playlist
     }

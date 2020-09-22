@@ -1,27 +1,27 @@
 const Playlist = props => {
-    const chapters = [];
-    for (let chapter in props.chapters) {
-        chapters.push(<Chapter title={chapter} items={props.chapters[chapter]}/>)
-    }
+    const chapters = props.chapters.map((chapter) => {
+        return <Chapter title={chapter.title} items={chapter.items}/>
+    });
     return chapters;
+
 }
 
-const Chapter = props => {
-    return <div>
-        <h5>props.title</h5>
+export const Chapter = props => {
+    return <div className="chapter">
+        <h3>{props.title}</h3>
         <div className="items">
             <ListItems items={props.items}/>
         </div>
     </div>
 }
 
-const ListItem = props => {
-    const items = props.items.map(item => {
+export const ListItems = (props) => {
+    const items =  props.items.map(item => {
         return <li>
-            <h5>{props.title}</h5>
-            <p>{props.author}</p>
+            <h5>{item.title}</h5>
+            <p>{item.author}</p>
         </li>
     });
-    return <ul>{items}</ul>;
+    return <ul>{items}</ul>
 }
 export default Playlist

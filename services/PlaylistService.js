@@ -3,6 +3,10 @@ const s3 = new AWS.S3({apiVersion: '2006-03-01'})
 
 class PlaylistService {
     
+    refreshPlaylist(playlist) {
+
+    }
+
     getPlaylist(playlistConfig) {
         const params = {
             Bucket: playlistConfig.bucket,
@@ -41,7 +45,7 @@ class PlaylistService {
             }
             chapter.items.push({
                 title: title.replace(/\.\w+$/, ''),
-                modified: item.LastModified,
+                modified: item.LastModified.toDateString(),
                 size: Math.round(item.Size * .001)
             });
 

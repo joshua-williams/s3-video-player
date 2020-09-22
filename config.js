@@ -1,5 +1,6 @@
 module.exports = {
     "bucket": "training-series",
+    "storage": "storage/videos",
     "playlists": [{
         "author": "Pluralsight",
         "name"  : "Using React Hooks",
